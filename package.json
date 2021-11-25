@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "clean": "rm -rf dist",
     "prepack": "tsc",
     "prettier:check": "prettier --list-different .",
     "prettier:fix": "prettier --write ."
