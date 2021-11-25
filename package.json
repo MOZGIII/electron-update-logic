@@ -13,7 +13,11 @@
     "prettier:check": "prettier --list-different .",
     "prettier:fix": "prettier --write ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/semver": "^7.3.9",
+    "electron": "^16.0.2",
+    "semver": "^7.3.5"
+  },
   "devDependencies": {
     "prettier": "^2.4.1",
     "typescript": "^4.5.2"
