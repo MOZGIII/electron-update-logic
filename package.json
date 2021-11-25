@@ -9,10 +9,13 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepack": "tsc"
+    "prepack": "tsc",
+    "prettier:check": "prettier --list-different .",
+    "prettier:fix": "prettier --write ."
   },
   "dependencies": {},
   "devDependencies": {
+    "prettier": "^2.4.1",
     "typescript": "^4.5.2"
   }
 }
