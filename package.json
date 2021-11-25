@@ -1,6 +1,16 @@
 {
   "name": "electron-update-logic",
   "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepack": "tsc"
+  },
   "dependencies": {},
   "devDependencies": {
     "typescript": "^4.5.2"
