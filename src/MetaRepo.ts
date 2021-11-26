@@ -2,8 +2,9 @@ import * as repo from "./meta/repo";
 import { ElectronFeedURLOptions, Logic } from "./AutoUpdater";
 import { findMatchingPlatform } from "./meta/platforms";
 import { areVersionsEqual, findLatestRelease } from "./meta/versions";
+import { JsonInput } from "./util";
 
-export type GetMeta = () => Promise<repo.Metadata>;
+export type GetMeta = () => Promise<JsonInput<repo.Metadata>>;
 
 export type FeedParams = Omit<ElectronFeedURLOptions, "url">;
 
@@ -16,9 +17,13 @@ class MetaRepo implements Logic {
   ) {}
 
   lastVersionFeed = async (): Promise<ElectronFeedURLOptions | null> => {
-    const meta = await this.getMeta();
+    const { releases } = await this.getMeta();
+    if (!(releases instanceof Array)) {
+      // Meta is not in a valid format even.
+      return null;
+    }
 
-    const latestRelease = findLatestRelease(meta.releases);
+    const latestRelease = findLatestRelease(releases);
     if (!latestRelease) {
       // No releases available.
       return null;

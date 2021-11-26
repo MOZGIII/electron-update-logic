@@ -1,4 +1,5 @@
-import * as repo from "./repo";
+import * as repo from "../../meta/repo";
+import { JsonInput } from "../../util";
 
 export interface MetaResponse {
   readonly status: number;
@@ -15,12 +16,12 @@ class MetadataFetchingError extends Error {
 
 const handleMetaResponse = async (
   response: MetaResponse
-): Promise<repo.Metadata> => {
+): Promise<JsonInput<repo.Metadata>> => {
   const ok = response.status >= 200 && response.status < 300;
   if (!ok) {
     throw new MetadataFetchingError(response);
   }
-  const metadata: repo.Metadata = await response.json();
+  const metadata: JsonInput<repo.Metadata> = await response.json();
   return metadata;
 };
 

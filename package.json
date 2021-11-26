@@ -11,6 +11,7 @@
     "build": "tsc",
     "clean": "rm -rf dist",
     "prepack": "tsc",
+    "tsc:check": "tsc --noEmit",
     "prettier:check": "prettier --list-different .",
     "prettier:fix": "prettier --write .",
     "test": "jest"
@@ -18,9 +19,11 @@
   "dependencies": {
     "@types/semver": "^7.3.9",
     "electron": "^16.0.2",
-    "semver": "^7.3.5"
+    "semver": "^7.3.5",
+    "tsdef": "^0.0.14"
   },
   "optionalDependencies": {
+    "axios": "^0.24.0",
     "node-fetch": "^3.1.0"
   },
   "devDependencies": {
