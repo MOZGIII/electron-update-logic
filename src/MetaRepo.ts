@@ -1,34 +1,22 @@
+import * as repo from "./meta/repo";
 import { ElectronFeedURLOptions, Logic } from "./AutoUpdater";
-import handleMetaResponse from "./meta/handleMetaResponse";
-import makeMetaRequest from "./meta/makeMetaRequest";
 import { findMatchingPlatform } from "./meta/platforms";
 import { areVersionsEqual, findLatestRelease } from "./meta/versions";
 
+export type GetMeta = () => Promise<repo.Metadata>;
+
 export type FeedParams = Omit<ElectronFeedURLOptions, "url">;
-
-export type MetaParams = {
-  readonly url: string;
-  readonly headers: Headers;
-};
-
-export type Fetch = (
-  input: RequestInfo,
-  init: RequestInit
-) => Promise<Response>;
 
 class MetaRepo implements Logic {
   constructor(
-    readonly meta: MetaParams,
+    readonly getMeta: GetMeta,
     readonly feed: FeedParams,
     readonly currentVersion: string,
-    readonly platform: string,
-    readonly fetch: Fetch = self.fetch
+    readonly platform: string
   ) {}
 
   lastVersionFeed = async (): Promise<ElectronFeedURLOptions | null> => {
-    const [info, init] = makeMetaRequest(this.meta.url, this.meta.headers);
-    const res = await this.fetch(info, init);
-    const meta = await handleMetaResponse(res);
+    const meta = await this.getMeta();
 
     const latestRelease = findLatestRelease(meta.releases);
     if (!latestRelease) {

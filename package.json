@@ -20,6 +20,9 @@
     "electron": "^16.0.2",
     "semver": "^7.3.5"
   },
+  "optionalDependencies": {
+    "node-fetch": "^3.1.0"
+  },
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/koa": "^2.13.4",
