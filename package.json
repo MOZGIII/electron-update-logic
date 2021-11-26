@@ -8,9 +8,9 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "yarn clean && tsc",
     "clean": "rm -rf dist",
-    "prepack": "tsc",
+    "prepack": "yarn build",
     "tsc:check": "tsc --noEmit",
     "prettier:check": "prettier --list-different .",
     "prettier:fix": "prettier --write .",
