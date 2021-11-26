@@ -7,7 +7,7 @@ import { JsonInput } from "../util";
 
 export type NodeFetchParams = {
   readonly url: string;
-  readonly headers: HeadersInit;
+  readonly headers?: HeadersInit;
 };
 
 export const getMeta = async (

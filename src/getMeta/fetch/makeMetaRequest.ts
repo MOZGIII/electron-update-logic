@@ -1,5 +1,7 @@
+import { NonUndefined } from "tsdef";
+
 export type MetaRequestInit<H> = {
-  readonly headers: H;
+  readonly headers: NonUndefined<H> | {};
   readonly cache: "reload";
   readonly redirect: "follow";
   readonly keepalive: false;
@@ -11,7 +13,7 @@ const makeMetaRequest = <H>(
 ): [string, MetaRequestInit<H>] => [
   url,
   {
-    headers,
+    headers: headers || {},
     cache: "reload",
     redirect: "follow",
     keepalive: false,
