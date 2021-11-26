@@ -9,4 +9,5 @@ module.exports = {
     },
   },
   testRegex: "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$",
+  testPathIgnorePatterns: ["/node_modules/", "/tests/fixtures/.*"],
 } as InitialOptionsTsJest;
