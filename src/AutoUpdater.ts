@@ -36,7 +36,7 @@ class AutoUpdater extends EventEmitter {
   private prepareFeed = async () => {
     let feed;
     try {
-      await this.logic.lastVersionFeed();
+      feed = await this.logic.lastVersionFeed();
     } catch (err) {
       this.isFeedSet = false;
       this.emit("error", err);
