@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@types/semver": "^7.3.9",
+    "ajv": "^8.8.2",
     "electron": "^16.0.2",
     "semver": "^7.3.5",
     "tsdef": "^0.0.14"
