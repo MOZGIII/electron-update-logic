@@ -1,17 +1,13 @@
-import * as repo from "../meta/repo";
 import handleMetaResponse from "./fetch/handleMetaResponse";
 import makeMetaRequest from "./fetch/makeMetaRequest";
-import { GetMeta } from "..";
-import { JsonInput } from "../util";
+import { GetMeta } from "../MetaRepo";
 
 export type FetchParams = {
   readonly url: string;
   readonly headers?: HeadersInit;
 };
 
-export const getMeta = async (
-  params: FetchParams
-): Promise<JsonInput<repo.Metadata>> => {
+export const getMeta = async (params: FetchParams) => {
   const [info, init] = makeMetaRequest(params.url, params.headers);
   const res = await fetch(info, init);
   return await handleMetaResponse(res);

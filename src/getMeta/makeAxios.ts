@@ -1,18 +1,17 @@
-import * as repo from "../meta/repo";
 import axios, { AxiosRequestConfig } from "axios";
-import { GetMeta } from "..";
-import { DeepPartial } from "tsdef";
+import { GetMeta } from "../MetaRepo";
+import { validateMetadata } from "../meta/repo.validator";
 
 export type AxiosParams = Omit<AxiosRequestConfig, "responseType"> & {
   url: string;
 };
 
 export const getMeta = async (params: AxiosParams) => {
-  const res = await axios.request<DeepPartial<repo.Metadata>>({
+  const res = await axios.request<unknown>({
     ...params,
     responseType: "json",
   });
-  return res.data;
+  return validateMetadata(res.data);
 };
 
 export const makeFetchMeta = (params: AxiosParams): GetMeta =>

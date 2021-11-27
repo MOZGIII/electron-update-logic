@@ -28,7 +28,7 @@ describe("Transport - axios", () => {
     expect(route).toHaveBeenCalledTimes(1);
   });
 
-  it("reacts to an invalid response body as expected", async () => {
+  it("throws on an invalid response body as expected", async () => {
     const route = server.get("/").mockImplementationOnce((ctx) => {
       ctx.status = 200;
       ctx.body = "<html></html>";
@@ -41,13 +41,14 @@ describe("Transport - axios", () => {
       "win32"
     );
 
-    const feed = await metaRepo.lastVersionFeed();
-    expect(feed).toBeNull();
+    await expect(async () => {
+      await metaRepo.lastVersionFeed();
+    }).rejects.toThrowError("invalid payload: Metadata");
 
     expect(route).toHaveBeenCalledTimes(1);
   });
 
-  it("reacts to an empty response body as expected", async () => {
+  it("throws on an empty response body as expected", async () => {
     const route = server.get("/").mockImplementationOnce((ctx) => {
       ctx.status = 200;
       ctx.body = "";
@@ -60,8 +61,69 @@ describe("Transport - axios", () => {
       "win32"
     );
 
-    const feed = await metaRepo.lastVersionFeed();
-    expect(feed).toBeNull();
+    await expect(async () => {
+      await metaRepo.lastVersionFeed();
+    }).rejects.toThrowError("invalid payload: Metadata");
+
+    expect(route).toHaveBeenCalledTimes(1);
+  });
+
+  it("throws on an incomplete response body as expected", async () => {
+    const route = server.get("/").mockImplementationOnce((ctx) => {
+      ctx.status = 200;
+      ctx.body = `{"releases":`;
+    });
+
+    const metaRepo = new MetaRepo(
+      makeAxios({ url: server.getURL().toString() }),
+      {},
+      "0.1.0",
+      "win32"
+    );
+
+    await expect(async () => {
+      await metaRepo.lastVersionFeed();
+    }).rejects.toThrowError("invalid payload: Metadata");
+
+    expect(route).toHaveBeenCalledTimes(1);
+  });
+
+  it("throws on an empty object response body as expected", async () => {
+    const route = server.get("/").mockImplementationOnce((ctx) => {
+      ctx.status = 200;
+      ctx.body = {};
+    });
+
+    const metaRepo = new MetaRepo(
+      makeAxios({ url: server.getURL().toString() }),
+      {},
+      "0.1.0",
+      "win32"
+    );
+
+    await expect(async () => {
+      await metaRepo.lastVersionFeed();
+    }).rejects.toThrowError("invalid payload: Metadata");
+
+    expect(route).toHaveBeenCalledTimes(1);
+  });
+
+  it("throws on a non-array releases as expected", async () => {
+    const route = server.get("/").mockImplementationOnce((ctx) => {
+      ctx.status = 200;
+      ctx.body = { releases: "hello world" };
+    });
+
+    const metaRepo = new MetaRepo(
+      makeAxios({ url: server.getURL().toString() }),
+      {},
+      "0.1.0",
+      "win32"
+    );
+
+    await expect(async () => {
+      await metaRepo.lastVersionFeed();
+    }).rejects.toThrowError("invalid payload: Metadata");
 
     expect(route).toHaveBeenCalledTimes(1);
   });

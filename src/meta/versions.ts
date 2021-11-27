@@ -1,21 +1,11 @@
 import { coerce } from "semver";
-import { JsonInput } from "../util";
 import { Release } from "./repo";
 
-export const findLatestRelease = (
-  releases: Array<JsonInput<Release>>
-): Release | null => {
+export const findLatestRelease = (releases: Array<Release>): Release | null => {
   if (releases.length === 0) {
     return null;
   }
   return releases.reduce((prev, curr) => {
-    if (!curr) {
-      return prev;
-    }
-    if (!prev) {
-      return curr;
-    }
-
     const prevSemver = coerce(prev.version);
     const currSemver = coerce(curr.version);
 
@@ -31,7 +21,7 @@ export const findLatestRelease = (
     }
 
     return curr;
-  }) as Release;
+  });
 };
 
 export const areVersionsEqual = (a: string, b: string) => {
