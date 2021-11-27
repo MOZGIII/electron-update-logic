@@ -1,6 +1,6 @@
 import { MockServer } from "jest-mock-server";
-import MetaRepo from "../../src/MetaRepo";
-import makeAxios from "../../src/getMeta/makeAxios";
+import MetaRepo from "../../../src/MetaRepo";
+import makeAxios from "../../../src/getMeta/makeAxios";
 
 describe("Transport - axios", () => {
   const server = new MockServer();

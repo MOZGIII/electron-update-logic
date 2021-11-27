@@ -1,7 +1,7 @@
 import { MockServer } from "jest-mock-server";
-import MetaRepo from "../src/MetaRepo";
-import makeAxios from "../src/getMeta/makeAxios";
-import samples from "./fixtures/meta";
+import MetaRepo from "../../src/MetaRepo";
+import makeAxios from "../../src/getMeta/makeAxios";
+import samples from "../fixtures/meta";
 
 describe("Logic", () => {
   const server = new MockServer();
