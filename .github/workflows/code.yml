@@ -1,0 +1,34 @@
+name: code
+
+on:
+  push:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  yarn:
+    strategy:
+      matrix:
+        command:
+          - prettier:check
+          - tsc:check
+          - repo-validator:check
+          - test
+      fail-fast: false
+
+    name: ${{ matrix.command }}
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn ${{ matrix.command }}
