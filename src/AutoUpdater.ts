@@ -20,10 +20,12 @@ const mappedEmits = [
 ] as const;
 
 class AutoUpdater extends EventEmitter {
-  inner: ElectronAutoUpdater = electronAutoUpdater;
   private isFeedSet: boolean = false;
 
-  constructor(readonly logic: Logic) {
+  constructor(
+    readonly logic: Logic,
+    readonly inner: ElectronAutoUpdater = electronAutoUpdater
+  ) {
     super();
 
     const mapEmit = <T extends typeof mappedEmits[any]>(mappedEmit: T) => {
