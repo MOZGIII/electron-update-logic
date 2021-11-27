@@ -8,6 +8,8 @@
     "dist/**"
   ],
   "scripts": {
+    "repo-validator:generate": "create-validator-ts \"src/meta/repo.ts\"",
+    "repo-validator:check": "create-validator-ts \"src/meta/repo.ts\" --check",
     "build": "yarn clean && tsc",
     "clean": "rm -rf dist",
     "prepack": "yarn build",
@@ -30,6 +32,7 @@
     "@types/koa": "^2.13.4",
     "@types/koa-bodyparser": "^4.3.4",
     "@types/koa-router": "^7.4.4",
+    "create-validator-ts": "^2.0.0",
     "jest": "^27.3.1",
     "jest-mock-server": "^0.0.5",
     "prettier": "^2.4.1",
