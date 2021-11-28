@@ -47,12 +47,16 @@ export const SCHEMA = {
                 "platform": {
                     "$ref": "#/definitions/PlatfomName"
                 },
+                "arch": {
+                    "$ref": "#/definitions/ArchName"
+                },
                 "url": {
                     "type": "string"
                 }
             },
             "required": [
                 "platform",
+                "arch",
                 "url"
             ],
             "additionalProperties": false
@@ -82,6 +86,9 @@ export const SCHEMA = {
                 "cygwin",
                 "netbsd"
             ]
+        },
+        "ArchName": {
+            "type": "string"
         }
     }
 };
@@ -143,5 +150,20 @@ export function validatePlatfomName(payload: unknown): apiTypes.PlatfomName {
 export function isPlatfomName(payload: unknown): payload is apiTypes.PlatfomName {
   /** Schema is defined in {@link SCHEMA.definitions.PlatfomName } **/
   const ajvValidate = ajv.compile({ "$ref": "SCHEMA#/definitions/PlatfomName" });
+  return ajvValidate(payload);
+}
+
+export function validateArchName(payload: unknown): apiTypes.ArchName {
+  if (!isArchName(payload)) {
+    const error = new Error('invalid payload: ArchName');
+    error.name = "ValidationError";
+    throw error;
+  }
+  return payload;
+}
+
+export function isArchName(payload: unknown): payload is apiTypes.ArchName {
+  /** Schema is defined in {@link SCHEMA.definitions.ArchName } **/
+  const ajvValidate = ajv.compile({ "$ref": "SCHEMA#/definitions/ArchName" });
   return ajvValidate(payload);
 }

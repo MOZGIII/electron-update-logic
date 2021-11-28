@@ -18,7 +18,8 @@ describe("Transport - axios", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     await expect(async () => {
@@ -38,7 +39,8 @@ describe("Transport - axios", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     await expect(async () => {
@@ -58,7 +60,8 @@ describe("Transport - axios", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     await expect(async () => {
@@ -78,7 +81,8 @@ describe("Transport - axios", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     await expect(async () => {
@@ -98,7 +102,8 @@ describe("Transport - axios", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     await expect(async () => {
@@ -118,7 +123,8 @@ describe("Transport - axios", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     await expect(async () => {

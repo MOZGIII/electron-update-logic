@@ -9,7 +9,10 @@ export type Release = {
 
 export type PlatfomName = NodeJS.Platform | string;
 
+export type ArchName = NodeJS.Process["arch"] | string;
+
 export type Feed = {
   readonly platform: PlatfomName;
+  readonly arch: ArchName;
   readonly url: string;
 };
