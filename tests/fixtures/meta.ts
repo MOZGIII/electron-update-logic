@@ -1,7 +1,7 @@
 import { repo } from "../../src";
 
 const mkurl = (version: string, platform: string, arch: string) =>
-  `http://exmaple.com/app/${version}/${platform}/${arch}`;
+  `http://exmaple.com/app/${version}/${platform}-${arch}`;
 
 const mkfeed = (version: string, platform: string, arch: string) => ({
   platform,
