@@ -25,7 +25,7 @@ describe("Logic", () => {
     );
 
     const feed = await metaRepo.lastVersionFeed();
-    expect(feed).toEqual({ url: "http://exmaple.com/app/0.1.1/win32/x64" });
+    expect(feed).toEqual({ url: "http://exmaple.com/app/0.1.1/win32-x64" });
 
     expect(route).toHaveBeenCalledTimes(1);
   });
@@ -85,7 +85,7 @@ describe("Logic", () => {
     );
 
     const feed = await metaRepo.lastVersionFeed();
-    expect(feed).toEqual({ url: "http://exmaple.com/app/0.2.0/win32/x64" });
+    expect(feed).toEqual({ url: "http://exmaple.com/app/0.2.0/win32-x64" });
 
     expect(route).toHaveBeenCalledTimes(1);
   });
