@@ -20,11 +20,12 @@ describe("Logic", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     const feed = await metaRepo.lastVersionFeed();
-    expect(feed).toEqual({ url: "http://exmaple.com/app/0.1.1/win32" });
+    expect(feed).toEqual({ url: "http://exmaple.com/app/0.1.1/win32/x64" });
 
     expect(route).toHaveBeenCalledTimes(1);
   });
@@ -39,7 +40,8 @@ describe("Logic", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.1",
-      "win32"
+      "win32",
+      "x64"
     );
 
     const feed = await metaRepo.lastVersionFeed();
@@ -58,7 +60,8 @@ describe("Logic", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.0",
-      "win32"
+      "win32",
+      "x64"
     );
 
     const feed = await metaRepo.lastVersionFeed();
@@ -77,11 +80,12 @@ describe("Logic", () => {
       makeAxios({ url: server.getURL().toString() }),
       {},
       "0.1.2",
-      "win32"
+      "win32",
+      "x64"
     );
 
     const feed = await metaRepo.lastVersionFeed();
-    expect(feed).toEqual({ url: "http://exmaple.com/app/0.2.0/win32" });
+    expect(feed).toEqual({ url: "http://exmaple.com/app/0.2.0/win32/x64" });
 
     expect(route).toHaveBeenCalledTimes(1);
   });

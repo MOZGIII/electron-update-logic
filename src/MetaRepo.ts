@@ -12,7 +12,8 @@ class MetaRepo implements Logic {
     readonly getMeta: GetMeta,
     readonly feed: FeedParams,
     readonly currentVersion: string,
-    readonly platform: string
+    readonly platform: string,
+    readonly arch: string
   ) {}
 
   lastVersionFeed = async (): Promise<ElectronFeedURLOptions | null> => {
@@ -29,7 +30,11 @@ class MetaRepo implements Logic {
       return null;
     }
 
-    const feed = findMatchingPlatform(latestRelease.feeds, this.platform);
+    const feed = findMatchingPlatform(
+      latestRelease.feeds,
+      this.platform,
+      this.arch
+    );
     if (!feed) {
       // No update for this platform.
       return null;
