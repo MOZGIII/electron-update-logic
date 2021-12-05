@@ -15,7 +15,7 @@ describe("Transport - axios", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",
@@ -36,7 +36,7 @@ describe("Transport - axios", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",
@@ -57,7 +57,7 @@ describe("Transport - axios", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",
@@ -78,7 +78,7 @@ describe("Transport - axios", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",
@@ -99,7 +99,7 @@ describe("Transport - axios", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",
@@ -120,7 +120,7 @@ describe("Transport - axios", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",

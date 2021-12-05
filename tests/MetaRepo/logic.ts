@@ -17,7 +17,7 @@ describe("Logic", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",
@@ -37,7 +37,7 @@ describe("Logic", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.1",
       "win32",
@@ -57,7 +57,7 @@ describe("Logic", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.0",
       "win32",
@@ -77,7 +77,7 @@ describe("Logic", () => {
     });
 
     const metaRepo = new MetaRepo(
-      makeAxios({ url: server.getURL().toString() }),
+      { getMeta: makeAxios({ url: server.getURL().toString() }) },
       {},
       "0.1.2",
       "win32",
