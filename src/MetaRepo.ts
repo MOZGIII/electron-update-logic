@@ -2,6 +2,12 @@ import * as repo from "./meta/repo";
 import { ElectronFeedURLOptions, Logic } from "./AutoUpdater";
 import { findMatchingPlatform } from "./meta/platforms";
 import { areVersionsEqual, findLatestRelease } from "./meta/versions";
+import resolveUrl from "./meta/resolveUrl";
+
+export type MetaRepoProvider = {
+  readonly getMeta: GetMeta;
+  readonly baseUrl?: string;
+};
 
 export type GetMeta = () => Promise<repo.Metadata>;
 
@@ -9,7 +15,7 @@ export type FeedParams = Omit<ElectronFeedURLOptions, "url">;
 
 class MetaRepo implements Logic {
   constructor(
-    readonly getMeta: GetMeta,
+    readonly provider: MetaRepoProvider,
     readonly feed: FeedParams,
     readonly currentVersion: string,
     readonly platform: string,
@@ -17,7 +23,7 @@ class MetaRepo implements Logic {
   ) {}
 
   lastVersionFeed = async (): Promise<ElectronFeedURLOptions | null> => {
-    const { releases } = await this.getMeta();
+    const { releases } = await this.provider.getMeta();
 
     const latestRelease = findLatestRelease(releases);
     if (!latestRelease) {
@@ -40,9 +46,11 @@ class MetaRepo implements Logic {
       return null;
     }
 
+    const url = resolveUrl(feed.url, this.provider.baseUrl);
+
     return {
       ...this.feed,
-      url: feed.url,
+      url,
     };
   };
 }
